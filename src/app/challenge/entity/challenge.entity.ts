@@ -12,18 +12,6 @@ export class ChallengeEntity {
     dificulty: number;
 
     @Column()
-    score: number;
-
-    @Column({ name: 'time_elapsed'})
-    timeElapsed: string;
-
-    @Column()
-    reloads: number;
-
-    @Column({ name: 'times_played'})
-    timesPlayed: number;
-
-    @Column()
     code: string;
 
     @Column()

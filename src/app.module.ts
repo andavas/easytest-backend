@@ -5,6 +5,7 @@ import { AppService } from './app.service';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { UserModule } from './app/user/user.module';
 import { ChallengeModule } from './app/challenge/challenge.module';
+import { GameModule } from './app/game/game.module';
 
 @Module({
   imports: [
@@ -24,6 +25,7 @@ import { ChallengeModule } from './app/challenge/challenge.module';
     }),
     UserModule,
     ChallengeModule,
+    GameModule,
   ],
   controllers: [AppController],
   providers: [AppService],

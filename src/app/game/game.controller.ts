@@ -1,33 +1,33 @@
 import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, ParseUUIDPipe, Patch, Post } from '@nestjs/common';
-import { ChallengeService } from './challenge.service';
+import { GameService } from './game.service';
 
-@Controller('api/v1/challenges')
-export class ChallengeController {
+@Controller('api/v1/games')
+export class GameController {
 
-    constructor(private readonly challengeService: ChallengeService) {}
+    constructor(private readonly gameService: GameService) {}
 
     @Get()
     async index() {
-        return await this.challengeService.findAll();
+        return await this.gameService.findAll();
     }
     @Post()
     async create(@Body() body) {
-        return this.challengeService.create(body)
+        return this.gameService.create(body)
     }
 
     @Get(':id')
     async show(@Param('id', new ParseUUIDPipe()) id: string) {
-        return this.challengeService.findOneByIdOrFail(id)
+        return this.gameService.findOneByIdOrFail(id)
     }
 
     @Patch(':id')
     async update(@Param('id', new ParseUUIDPipe()) id: string, @Body() body) {
-        return this.challengeService.update(id, body)
+        return this.gameService.update(id, body)
     }
 
     @Delete(':id')
     @HttpCode(HttpStatus.NO_CONTENT)
     async destroy(@Param('id', new ParseUUIDPipe()) id:string) {
-        await this.challengeService.delete(id)
+        await this.gameService.delete(id)
     }
 }
