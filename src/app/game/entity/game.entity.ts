@@ -1,4 +1,4 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, DeleteDateColumn, Entity, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity({name: 'games'})
 export class GameEntity {
@@ -20,4 +20,6 @@ export class GameEntity {
     @Column({ name: 'times_played'})
     timesPlayed: number;
 
+    @DeleteDateColumn()
+    deletedAt?: Date;
 }

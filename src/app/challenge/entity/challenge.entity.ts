@@ -1,4 +1,4 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, DeleteDateColumn, Entity, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity({name: 'challenges'})
 export class ChallengeEntity {
@@ -16,4 +16,7 @@ export class ChallengeEntity {
 
     @Column()
     test: string;
+
+    @DeleteDateColumn()
+    deletedAt?: Date;
 }
