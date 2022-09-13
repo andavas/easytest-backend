@@ -1,7 +1,7 @@
 import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, ParseUUIDPipe, Patch, Post } from '@nestjs/common';
 import { GameService } from './game.service';
 
-@Controller('api/v1/games')
+@Controller('api/games')
 export class GameController {
 
     constructor(private readonly gameService: GameService) {}

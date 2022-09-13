@@ -1,7 +1,7 @@
 import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, ParseUUIDPipe, Patch, Post } from '@nestjs/common';
 import { ChallengeService } from './challenge.service';
 
-@Controller('api/v1/challenges')
+@Controller('api/challenges')
 export class ChallengeController {
 
     constructor(private readonly challengeService: ChallengeService) {}
