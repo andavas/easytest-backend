@@ -8,6 +8,7 @@ import { ChallengeModule } from './app/challenge/challenge.module';
 import { GameModule } from './app/game/game.module';
 import { AuthModule } from './auth/auth.module';
 
+
 @Module({
   imports: [
     TypeOrmModule.forRootAsync({
