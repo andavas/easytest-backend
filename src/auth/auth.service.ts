@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
 import { UserService } from '../app/user/user.service';
 import { JwtService } from '@nestjs/jwt';
 import { EntityNotFoundError } from 'typeorm';
@@ -41,6 +41,8 @@ export class AuthService {
   async login(user: User) {
     const payload = { email: user.email, sub: user.userId };
     let result = this.validateUser(user.email, user.password);
+
+    // throw new BadRequestException("Usuário nao existe.");
     return result.then((response) => {
       if (response) {
         if (response.id) {

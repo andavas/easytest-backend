@@ -8,13 +8,17 @@ export class AppController {
   @Post('api/auth/login')
   async login(@Request() req, @Res() res) {
     
-    const response = this.authService.login(req.body);
-    if ((await response).access_token != undefined) 
+    const response = await this.authService.login(req.body);
+    console.log(response)
+    if (response.hasOwnProperty("access_token")) {
       return res.status(HttpStatus.OK)
       .send(JSON.stringify(await response))
+    }
 
-    else if ((await response).msg != undefined) 
+    else if (response.hasOwnProperty("msg")) 
       return res.status(HttpStatus.BAD_REQUEST)
       .send(JSON.stringify(await response))
+
+      
   }
 }
