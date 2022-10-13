@@ -47,6 +47,9 @@ export class AuthService {
       if (response) {
         if (response.id) {
           return {
+            id: response.id,
+            name: response.name,
+            email: response.email,
             access_token: this.jwtService.sign(payload),
           };
         } else {

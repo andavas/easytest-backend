@@ -1,4 +1,4 @@
-import { Column, DeleteDateColumn, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, CreateDateColumn, DeleteDateColumn, Entity, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity({name: 'games'})
 export class GameEntity {
@@ -9,16 +9,19 @@ export class GameEntity {
     userID: string;
 
     @Column()
+    challengeID: string;
+
+    @Column({default: 0})
     score: number;
 
-    @Column({ name: 'time_elapsed'})
-    timeElapsed: string;
-
-    @Column()
+    @Column({default: 0})
     reloads: number;
 
-    @Column({ name: 'times_played'})
-    timesPlayed: number;
+    @CreateDateColumn({ name: 'created_at', type: "timestamp", default: () => "CURRENT_TIMESTAMP(6)" })
+    createdAt: Date;
+
+    @Column({ name: 'finshed_at', type: 'timestamptz', nullable:true })
+    finshedAt?: Date;
 
     @DeleteDateColumn()
     deletedAt?: Date;

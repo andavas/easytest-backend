@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, ParseUUIDPipe, Patch, Post, UseGuards } from '@nestjs/common';
+import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, ParseUUIDPipe, Patch, Post, Put, UseGuards } from '@nestjs/common';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 import { GameService } from './game.service';
 
@@ -22,7 +22,7 @@ export class GameController {
         return this.gameService.findOneByIdOrFail(id)
     }
 
-    @Patch(':id')
+    @Put(':id')
     async update(@Param('id', new ParseUUIDPipe()) id: string, @Body() body) {
         return this.gameService.update(id, body)
     }
