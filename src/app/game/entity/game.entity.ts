@@ -17,7 +17,7 @@ export class GameEntity {
     @Column({default: 0})
     reloads: number;
 
-    @CreateDateColumn({ name: 'created_at', type: "timestamp", default: () => "CURRENT_TIMESTAMP(6)" })
+    @CreateDateColumn({ name: 'created_at', type: "timestamptz" })
     createdAt: Date;
 
     @Column({ name: 'finshed_at', type: 'timestamptz', nullable:true })

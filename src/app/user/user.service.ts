@@ -16,6 +16,10 @@ function removepass(user) {
    ) 
 }
 
+const generateHash = async (password: string): Promise<string> => {
+    return await bcrypt.hash(password, '$2b$10$OqPVs4b5aMkbR/easytest');
+}
+
 @Injectable()
 export class UserService {
    
@@ -25,7 +29,7 @@ export class UserService {
     ) {}
 
     async create(data:User) {
-        const hash = await bcrypt.hash(data.password,'$2b$10$OqPVs4b5aMkbR/easytest')
+        const hash = await generateHash(data.password)
         return await this.userRepository.save(this.userRepository.create({...data, password: hash}))
     }
 
@@ -55,13 +59,17 @@ export class UserService {
     }
 
     async update(id:string, data) {
-        const user = await this.findOneByEmailOrFail(id)
+        const user = await this.findOneByIdOrFail(id)
         this.userRepository.merge(user, data)
+        if(data.password) {
+            const hash = await generateHash(data.password)
+            this.userRepository.merge(user, {password: hash})
+        }
         return this.userRepository.save(user)
     }
 
     async delete(id: string) {
-        await this.findOneByEmailOrFail(id)
+        await this.findOneByIdOrFail(id)
         await this.userRepository.softDelete(id)
     }
 }

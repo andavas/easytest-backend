@@ -1,5 +1,6 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { FilterOperator, paginate } from 'nestjs-paginate';
 import { Repository } from 'typeorm';
 import { GameEntity } from './entity/game.entity';
 
@@ -16,9 +17,22 @@ export class GameService {
         return await this.gameRepository.save(this.gameRepository.create(data))
     }
 
+    // async findAll(query) {
+    //     return paginate(query, this.gameRepository, {
+    //         sortableColumns: ['id', 'createdAt', 'userID', 'challengeID'],
+    //         nullSort: 'last',
+    //         defaultSortBy: [['id', 'DESC']],
+    //         filterableColumns: {
+    //           score: [FilterOperator.GTE, FilterOperator.LTE],
+    //           reloads: [FilterOperator.GTE, FilterOperator.LTE],
+    //         },
+    //       })
+    // }
+
     async findAll() {
         return await this.gameRepository.find()
     }
+
     async findOneByIdOrFail(id: string) {
         try {
             return await this.gameRepository.findOneOrFail({

@@ -1,4 +1,5 @@
 import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, ParseUUIDPipe, Patch, Post, Put, UseGuards } from '@nestjs/common';
+import { Paginate } from 'nestjs-paginate';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 import { GameService } from './game.service';
 
