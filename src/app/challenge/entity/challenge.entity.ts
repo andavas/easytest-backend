@@ -8,8 +8,11 @@ export class ChallengeEntity {
     @Column()
     name: string;
 
-    @Column({type: "smallint", width: 1 })
+    @Column({type: "smallint", width: 1 }) // 0 easy, 1 medium, 2 hard
     dificulty: number;
+
+    @Column({type: "smallint", width: 1, nullable: true }) // 0 code and test, 1 code only, 2 test only
+    type: number;
 
     @Column()
     code: string;

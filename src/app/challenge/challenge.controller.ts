@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, ParseUUIDPipe, Patch, Post, UseGuards } from '@nestjs/common';
+import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, ParseUUIDPipe, Put, Post, UseGuards } from '@nestjs/common';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 import { ChallengeService } from './challenge.service';
 
@@ -22,7 +22,7 @@ export class ChallengeController {
         return this.challengeService.findOneByIdOrFail(id)
     }
 
-    @Patch(':id')
+    @Put(':id')
     async update(@Param('id', new ParseUUIDPipe()) id: string, @Body() body) {
         return this.challengeService.update(id, body)
     }

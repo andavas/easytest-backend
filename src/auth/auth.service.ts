@@ -42,7 +42,6 @@ export class AuthService {
     const payload = { email: user.email, sub: user.userId };
     let result = this.validateUser(user.email, user.password);
 
-    // throw new BadRequestException("Usuário nao existe.");
     return result.then((response) => {
       if (response) {
         if (response.id) {
