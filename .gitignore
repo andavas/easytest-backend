@@ -36,3 +36,4 @@ lerna-debug.log*
 
 # enviroments
 .env
+.docker.env
